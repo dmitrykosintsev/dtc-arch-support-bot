@@ -11,7 +11,7 @@ def send_button_click():
         ui.notify('Empty prompt')
     else:
         ui.notify('Fetching the results...')
-        result = llm(prompt.value, drop.text)
+        result = rag(prompt.value, drop.text)
         ui.markdown(result)
         ui.label('Did you like the reply?') \
             .style('text-align: center;')

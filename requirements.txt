@@ -4,3 +4,4 @@ tqdm
 openai
 python-dotenv
 spacy
+nicegui

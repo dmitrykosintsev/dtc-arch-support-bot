@@ -26,20 +26,3 @@ services:
             - driver: nvidia
               count: all
               capabilities: [ gpu ]
-
-  magic:
-    image: mageai/mageai:llm
-    command: mage start linux-support-bot
-    env_file:
-      - .env
-    build:
-      context: .
-      dockerfile: Dockerfile
-    environment:
-      USER_CODE_PATH: /home/dmitry/Documents/Programming/Python/dtc-arch-support-bot/
-      ENV: /home/dmitry/Documents/Programming/Python/dtc-arch-support-bot/.env
-    ports:
-      - 6789:6789
-    volumes:
-      - .:/home/dmitry/.mage/
-    restart: on-failure:5
