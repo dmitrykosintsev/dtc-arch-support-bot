@@ -63,7 +63,7 @@ def build_prompt(query, search_results):
 
 
 # Define a function to talk to LLM
-def llm(prompt, used_model = 'gemma2:2b'):
+def llm(prompt, used_model = 'gpt-4o-mini'):
     # Log the start time
     start_time = time.time()
 
@@ -100,7 +100,7 @@ def rag(query, used_model='gemma2:2b'):
 
 def main():
     query = "How do I install asusctl on Arch?"
-    print(rag(query, 'phi3'))
+    print(rag(query, 'qwen2:1.5b'))
 
 
 if __name__ == "__main__":

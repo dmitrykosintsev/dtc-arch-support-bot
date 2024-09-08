@@ -26,3 +26,14 @@ services:
             - driver: nvidia
               count: all
               capabilities: [ gpu ]
+
+  NiceGUI-app:
+    image: zauberzeug/nicegui:latest
+    restart: always
+    ports:
+      - "80:8080"
+    environment:
+      - PUID=1000 # change this to your user id
+      - PGID=1000 # change this to your group id
+    volumes:
+      - ./:/app/
