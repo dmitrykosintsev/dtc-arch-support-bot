@@ -5,3 +5,5 @@ openai
 python-dotenv
 spacy
 nicegui
+sentence_transformers
+python-dotenv

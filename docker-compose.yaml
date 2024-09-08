@@ -29,6 +29,7 @@ services:
 
   NiceGUI-app:
     image: zauberzeug/nicegui:latest
+    build: .
     restart: always
     ports:
       - "80:8080"
