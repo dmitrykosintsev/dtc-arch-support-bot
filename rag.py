@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 ollama_client = OpenAI(
-    base_url='http://localhost:11434/v1',
+    base_url=os.getenv('OLLAMA_URL'),
     api_key="ollama",
 )
 OpenAI.api_key = os.getenv('OPENAI_API_KEY')
@@ -34,7 +34,7 @@ def elastic_search(field, vector, course, index_name = "archwiki"):
         "_source": ["text", "section", "question", "course", "id"],
     }
 
-    es = Elasticsearch('http://localhost:9200')
+    es = Elasticsearch(os.getenv("ELASTIC_URL"))
     es_results = es.search(index=index_name, body=search_query)
 
     return [hit["_source"] for hit in es_results["hits"]["hits"]]

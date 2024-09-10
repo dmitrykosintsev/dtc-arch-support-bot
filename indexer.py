@@ -5,6 +5,7 @@ import re
 import psutil
 import threading
 import time
+import os
 
 # Get the list of all pages to parse
 import requests
@@ -127,7 +128,7 @@ def main():
     monitor_thread = threading.Thread(target=monitor_resources, daemon=True)
     monitor_thread.start()
 
-    es = Elasticsearch('http://localhost:9200')
+    es = Elasticsearch(os.getenv("ELASTIC_URL"))
     index_name = "archwiki"
 
     # Create the index with settings and mappings
