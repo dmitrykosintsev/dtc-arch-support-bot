@@ -63,12 +63,12 @@ def build_prompt(query, search_results):
 
 
 # Define a function to talk to LLM
-def llm(prompt, used_model = 'gpt-4o-mini'):
+def llm(prompt, used_model = 'qwen2'):
     # Log the start time
     start_time = time.time()
 
     # Logic to choose the model
-    if used_model == 'gemma2:2b' or used_model == 'qwen2:1.5b' or used_model == 'phi3':
+    if used_model == 'qwen2' or used_model == 'llama3.1' or used_model == 'zephyr':
         response = ollama_client.chat.completions.create(
             model=used_model,
             messages=[{"role": "user", "content": prompt}]
@@ -90,7 +90,7 @@ def llm(prompt, used_model = 'gpt-4o-mini'):
 
 
 # Put everything together
-def rag(query, used_model='gemma2:2b'):
+def rag(query, used_model='qwen2'):
     vector = model.encode(query)
     search_results = elastic_search('question_text_vector', vector, "course")
     prompt = build_prompt(query, search_results)

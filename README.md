@@ -11,6 +11,8 @@ New Linux users often find it difficult to solve problems with software. There a
 
 **LLM:** gemma2b, qwen2, phi3, chatGPT-4o-mini
 
+**Database:** SQLite
+
 **Container**: docker-compose
 
 ## How to run
