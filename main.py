@@ -3,7 +3,7 @@ from rag import rag, llm
 import sqlite3
 
 # Connect to SQLite database (it will be created if it doesn't exist)
-conn = sqlite3.connect('feedback.db')
+conn = sqlite3.connect('data/feedback.db')
 
 # Create a table for storing questions, responses, and feedback
 conn.execute('''
@@ -20,14 +20,14 @@ conn.close()
 dropdown_button = 'Select a model'
 
 def save_to_db(question, response, feedback=None):
-    conn = sqlite3.connect('feedback.db')
+    conn = sqlite3.connect('data/feedback.db')
     cursor = conn.cursor()
     cursor.execute('INSERT INTO feedback (question, response, feedback) VALUES (?, ?, ?)', (question, response, feedback))
     conn.commit()
     conn.close()
 
 def save_feedback(question, response, feedback):
-    conn = sqlite3.connect('feedback.db')
+    conn = sqlite3.connect('data/feedback.db')
     cursor = conn.cursor()
     cursor.execute('UPDATE feedback SET feedback = ? WHERE question = ? AND response = ?', (feedback, question, response))
     conn.commit()
