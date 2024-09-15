@@ -10,13 +10,13 @@ services:
       - "9200:9200"
       - "9300:9300"
     volumes:
-        - /home/dmitry/.elasticsearch/data/:/usr/share/elasticsearch/data
+        - ${ELASTIC_PATH}:/usr/share/elasticsearch/data
 
   ollama:
     image: ollama/ollama
     container_name: ollama
     volumes:
-      - /home/dmitry/.ollama/:/root/.ollama/
+      - ${OLLAMA_MODELS}:/root/.ollama/
     ports:
       - "11434:11434"
 
@@ -29,23 +29,53 @@ services:
     environment:
       - PUID=1000 # change this to your user id
       - PGID=1000 # change this to your group id
-      - ELASTIC_URL
+      - ${ELASTIC_URL}
     volumes:
-      - ./:/app/
+      - ${NICEGUI_PATH}:/app/
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=PASSWORD
+      - POSTGRES_USER=USERNAME
+      - POSTGRES_DB=DATABASE
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Use a Docker-managed named volume
+    networks:
+      - postgres-network
 
   metabase:
-    image: metabase/metabase:latest
-    container_name: metabase
-    hostname: metabase
-    ports:
-      - "3000:3000"  # Expose Metabase on port 3000
-    environment:
-      - MB_DB_FILE=/metabase-data/metabase.db  # Store Metabase's internal database here
     volumes:
-      - ./data:/metabase-data  # Map the 'data' directory to store both metabase.db and feedback.db
-    healthcheck:
-      test: curl --fail -I http://localhost:3000/api/health || exit 1
-      interval: 15s
-      timeout: 5s
-      retries: 5
+      # setup your SQLITE db (optional)
+      - ./data/feedback.db:/metabase
+      - ./metabase-data:/metabase-data
+    environment:
+      - MB_DB_TYPE=postgres
+      - MB_DB_DBNAME=DATABASE
+      - MB_DB_PORT=5432
+      - MB_DB_USER=USERNAME
+      - MB_DB_PASS=PASSWORD
+      - MB_DB_HOST=db
+    ports:
+      - 3000:3000
+    image: metabase/metabase
+    restart: always
+    depends_on:
+      - db
+    networks:
+      - postgres-network
 
+networks:
+  postgres-network:
+    driver: bridge
+
+volumes:
+  pgdata:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/pgdata  # Specify the path on the host
