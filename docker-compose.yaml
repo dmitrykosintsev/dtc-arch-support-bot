@@ -19,6 +19,14 @@ services:
       - ${OLLAMA_MODELS}:/root/.ollama/
     ports:
       - "11434:11434"
+    # Remove the rows below to run on CPU
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
 
   nicegui-app:
     image: zauberzeug/nicegui:latest
