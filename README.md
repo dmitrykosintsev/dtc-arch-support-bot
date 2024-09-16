@@ -9,13 +9,13 @@ New Linux users often find it difficult to solve problems with software. There a
 
 **UI**: NiceGUI
 
-**LLM:** llama3.1:latest, qwen2:latest, zephyr:latest, chatGPT-4o-mini
+**LLM:** llama3.1:8b, qwen2:7b, zephyr:7b, chatGPT-4o-mini
 
-**Database:** SQLite
+**Database:** SQLite (./data/feedback.db)
 
 **Container**: docker-compose
 
-**Visualisation**: Metabase
+**Visualisation**: Metabase (in progress)
 
 ## How to run
 1. Clone the repository or download the code
