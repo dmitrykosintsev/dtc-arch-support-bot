@@ -34,7 +34,7 @@ export OLLAMA_URL = http://ollama:11434/v1/
 export OLLAMA_PORT=11434
 export OLLAMA_MODELS=/path/to/your/ollama/models
 ~~~
-3.1. Extract the file UDix6qDkTaWQGO9uziKGHg.tar.gz from 'data' directory in ELASTIC_PATH/indices. After, run the following command to make sure the indices are available:
+3.1. Extract the file UDix6qDkTaWQGO9uziKGHg.tar.gz from **data** directory into ELASTIC_PATH/indices. After, run the following command to make sure the indices are available:
 ~~~
 curl -X GET "localhost:9200/_cat/indices?v"
 ~~~
@@ -43,7 +43,7 @@ You should see something like this:
 health status index         uuid                   pri rep docs.count docs.deleted store.size pri.store.size
 yellow open   archwiki      UDix6qDkTaWQGO9uziKGHg   3   1      25708            0     16.3mb         16.3mb
 ~~~
-3.2. (Optional) Run the following command to index the Archwiki
+3.2. (Optional) You can create the index from scratch if you do not trust the archive. In this case, run the following command to index the Archwiki
 ~~~
 python3 indexer.py
 ~~~
