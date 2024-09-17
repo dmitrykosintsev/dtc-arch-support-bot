@@ -4,6 +4,12 @@ DataTalks.Club project as part of llm-zoomcamp
 ## Problem statement
 New Linux users often find it difficult to solve problems with software. There are many forums and wiki-websites. However, they contain a lot of information, which can be confusing. By using LLMs, we can provide a user-friendly and customisable response that will directly tackle the issues the user is facing. Arch-support-bot provides information based on the pages of Arch wiki, which is one of the biggest resources available for Linux users.
 
+## UI showcase from an early build
+[Screencast_20240810_001001.webm](https://github.com/user-attachments/assets/75078295-44bf-4470-a36a-fb7a606d1a29)
+
+## Example response
+![Screenshot_20240917_103632](https://github.com/user-attachments/assets/b28dd6a7-19c0-4ac7-bfc1-71e9009e8a0a)
+
 ## Tech stack
 **Search:** Elasticsearch 8.4.3
 
@@ -54,8 +60,8 @@ health status index         uuid                   pri rep docs.count docs.delet
 yellow open   archwiki      UDix6qDkTaWQGO9uziKGHg   3   1      25708            0     16.3mb         16.3mb
 ~~~
 
-If you have problem with indices in Elasticsearch, you can delete the existing files in ./data/indices and extract the attached tar.gz. It contains a copy of the index of Archwiki.
-4. Comment the following lines in docker-compose.yaml if you do not have dedicated GPU or want to run on CPU:
+If you have a problem with indices in Elasticsearch, you can delete the existing files in ./data/indices and extract the attached tar.gz. It contains a copy of the index of Archwiki.
+4. Comment the following lines in docker-compose.yaml if you do not have a dedicated GPU or want to run on CPU:
 ~~~
     deploy:
       resources:
