@@ -35,6 +35,7 @@ New Linux users often find it difficult to solve problems with software. There a
 
 ## How to run
 1. Clone the repository or download the code
+
 2. Add .env file to the root directory with the following content:
 ~~~
 export OPENAI_API_KEY='your-key' # CHANGE THIS!
@@ -61,6 +62,7 @@ yellow open   archwiki      UDix6qDkTaWQGO9uziKGHg   3   1      25708           
 ~~~
 
 If you have a problem with indices in Elasticsearch, you can delete the existing files in ./data/indices and extract the attached tar.gz. It contains a copy of the index of Archwiki.
+
 4. Comment the following lines in docker-compose.yaml if you do not have a dedicated GPU or want to run on CPU:
 ~~~
     deploy:
@@ -76,6 +78,7 @@ If you have a problem with indices in Elasticsearch, you can delete the existing
 docker-compose up
 ~~~
 from the project directory.
+
 6. NiceGUI takes some time to start. Look for the output that says NiceGUI is ready. It will mention the address you need to access. It is usually localhost:8080 and an alternative address using a random IP. The localhost does not work all the time, so you need to look for the IP address.
 
 7. (Optional) You can create the index from scratch if you want. In this case, run the following command to index the Archwiki after you start the docker-compose:
